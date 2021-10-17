@@ -44,3 +44,7 @@ $MINIKUBE_IP cats.api
 ```bash
 helm uninstall nextjs-cats-api
 ```
+
+# Scaling the application - ideas & potential issues
+1. Move MongoDB to a dedicated Pod and add PersistentVolumeClaim
+2. Having multiple replicas might result in a data (like uploaded cats' pictures) not always be visible - e.g uploaded files are stored in particular pod's local filesystem, so they won't be visible if a request is handled by a secondary pod. In order to avoid that an application has to be stateless (i.e. uploaded files can be stored using a cloud solution - like Google Object Storage).
